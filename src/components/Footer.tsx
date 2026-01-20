@@ -1,4 +1,5 @@
 import { config } from '../config'
+import pendantImg from '/PendantMinimal.png'
 
 export default function Footer() {
   return (
@@ -7,7 +8,7 @@ export default function Footer() {
         {/* Decorative pendant */}
         <div className="mb-6">
           <img 
-            src="/PendantMinimal.png" 
+            src={pendantImg} 
             alt="" 
             className="w-16 h-16 mx-auto"
           />

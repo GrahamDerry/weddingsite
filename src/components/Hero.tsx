@@ -1,4 +1,5 @@
 import { config } from '../config'
+import pendantImg from '/PendantMinimal.png'
 
 export default function Hero() {
   return (
@@ -16,7 +17,7 @@ export default function Hero() {
         {/* Decorative element */}
         <div className="mb-8">
           <img 
-            src="/PendantMinimal.png" 
+            src={pendantImg} 
             alt="" 
             className="w-32 h-32 mx-auto"
           />
