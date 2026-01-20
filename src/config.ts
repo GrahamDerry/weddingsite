@@ -9,7 +9,7 @@ export const config = {
 
   // Venue details
   venueName: "Mint's house",
-  address: "Mae Yang Ha, Samoeng District, Chiang Mai 50250",
+  address: "Bo Kaeo, Samoeng District, Chiang Mai 50250",
   
   // Map coordinates
   lat: 18.841213,
