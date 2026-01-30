@@ -1,16 +1,17 @@
 import { config } from '../config'
-import pendantImg from '/PendantMinimal.png'
+import couplePhoto from '/couple-photo.png'
 
 export default function Footer() {
   return (
     <footer className="py-12 md:py-16 bg-stone-800 text-stone-300">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-        {/* Decorative pendant */}
-        <div className="mb-6">
-          <img 
-            src={pendantImg} 
-            alt="" 
-            className="w-16 h-16 mx-auto"
+        {/* Photo */}
+        <div className="mb-8">
+          <img
+            src={couplePhoto}
+            alt="Graham and Mint at a lantern festival"
+            className="mx-auto w-full max-w-md rounded-lg shadow-lg"
+            loading="lazy"
           />
         </div>
 

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <!--
+    Clean Chiang Mai sky lantern SVG
+    Background removed (fully transparent)
+    Designed for animation (scale/opacity safe)
+  -->
+
+  <defs>
+    <radialGradient id="paperGlow" cx="50%" cy="75%" r="55%">
+      <stop offset="0%" stop-color="#FFD9A3" stop-opacity="0.95"/>
+      <stop offset="55%" stop-color="#F6B76A" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#D89448" stop-opacity="0.9"/>
+    </radialGradient>
+
+    <radialGradient id="flameGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF6CC"/>
+      <stop offset="100%" stop-color="#FF9C2A" stop-opacity="0.85"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Lantern body -->
+  <g id="lantern" transform="translate(256,90)">
+    <!-- Paper body -->
+    <path d="
+      M-95 0
+      C-105 90 -105 210 -85 300
+      C-60 355 60 355 85 300
+      C105 210 105 90 95 0
+      C60 -40 -60 -40 -95 0 Z"
+      fill="url(#paperGlow)"/>
+
+    <!-- Vertical seams -->
+    <g stroke="#E7B16A" stroke-opacity="0.35" stroke-width="2">
+      <line x1="-60" y1="0" x2="-45" y2="300"/>
+      <line x1="-25" y1="0" x2="-15" y2="310"/>
+      <line x1="25" y1="0" x2="15" y2="310"/>
+      <line x1="60" y1="0" x2="45" y2="300"/>
+    </g>
+
+    <!-- Bottom wire ring -->
+    <ellipse cx="0" cy="310" rx="78" ry="14"
+             fill="none" stroke="#6B5A45" stroke-width="3"/>
+
+    <!-- Cross wires -->
+    <g stroke="#6B5A45" stroke-width="2">
+      <line x1="-45" y1="295" x2="45" y2="325"/>
+      <line x1="45" y1="295" x2="-45" y2="325"/>
+    </g>
+
+    <!-- Fuel cell -->
+    <rect x="-14" y="315" width="28" height="14"
+          rx="2" fill="#3A2A18"/>
+
+    <!-- Flame -->
+    <ellipse cx="0" cy="322" rx="18" ry="22"
+             fill="url(#flameGlow)"/>
+  </g>
+
+</svg>
