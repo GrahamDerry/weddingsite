@@ -30,7 +30,7 @@ export function launchLantern(userOptions = {}) {
     flicker: true,
     flickerPeriodS: 3.8,
     // Size
-    sizeCss: "min(240px, 46vw)",
+    sizeCss: "min(480px, 92vw)",
     // Layering / interaction
     zIndex: 10,
     // "oncePerSession": if true, only plays once per browser session
