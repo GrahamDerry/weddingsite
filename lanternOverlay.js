@@ -59,11 +59,28 @@ export function launchLantern(userOptions = {}) {
     const { overlay, lantern } = createDom(opt);
     lantern.style.opacity = "1";
     lantern.style.transform = "translateX(-50%) translateY(60vh) scale(1)";
+    attachPopInteraction({
+      overlay,
+      lantern,
+      reducedMotion: true,
+      cleanup: opt.cleanup,
+    });
     return;
   }
 
   injectStyles(opt);
   const { overlay, lantern, img, debugEl } = createDom(opt);
+  let popped = false;
+
+  attachPopInteraction({
+    overlay,
+    lantern,
+    reducedMotion: false,
+    cleanup: opt.cleanup,
+    onPop: () => {
+      popped = true;
+    },
+  });
 
   // Wind: slow multi-sine (Perlin-ish)
   const r = (min, max) => min + Math.random() * (max - min);
@@ -80,6 +97,8 @@ export function launchLantern(userOptions = {}) {
   const start = performance.now();
 
   function tick(now) {
+    if (popped) return;
+
     const elapsed = (now - start) / 1000;
     const tRaw = (elapsed - opt.startDelayS) / opt.durationS;
     const t = Math.max(0, Math.min(1, tRaw));
@@ -120,6 +139,74 @@ export function launchLantern(userOptions = {}) {
   }
 
   requestAnimationFrame(tick);
+}
+
+function attachPopInteraction({ overlay, lantern, reducedMotion, cleanup, onPop }) {
+  let popped = false;
+
+  const handlePop = (event) => {
+    if (popped) return;
+    popped = true;
+    onPop?.();
+
+    if (event.type === "touchstart") {
+      event.preventDefault();
+    }
+
+    lantern.style.pointerEvents = "none";
+
+    if (reducedMotion) {
+      if (cleanup) overlay.remove();
+      return;
+    }
+
+    popLantern({ overlay, lantern, cleanup });
+  };
+
+  lantern.addEventListener("click", handlePop, { passive: true });
+  lantern.addEventListener("touchstart", handlePop, { passive: false });
+}
+
+function popLantern({ overlay, lantern, cleanup }) {
+  const rect = lantern.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
+
+  lantern.style.transition = "opacity 100ms ease-out";
+  lantern.style.opacity = "0";
+
+  const bits = document.createElement("div");
+  bits.className = "lantern-pop-bits";
+  bits.style.left = `${centerX}px`;
+  bits.style.top = `${centerY}px`;
+
+  const bitCount = 12;
+  for (let i = 0; i < bitCount; i += 1) {
+    const bit = document.createElement("span");
+    bit.className = "lantern-pop-bit";
+
+    const angle = (Math.PI * 2 * i) / bitCount + (Math.random() - 0.5) * 0.4;
+    const distance = 14 + Math.random() * 20;
+    const dx = Math.cos(angle) * distance;
+    const dy = Math.sin(angle) * distance;
+    const size = 2 + Math.random() * 2;
+
+    bit.style.setProperty("--dx", `${dx.toFixed(2)}px`);
+    bit.style.setProperty("--dy", `${dy.toFixed(2)}px`);
+    bit.style.width = `${size.toFixed(2)}px`;
+    bit.style.height = `${size.toFixed(2)}px`;
+
+    bits.appendChild(bit);
+  }
+
+  overlay.appendChild(bits);
+
+  setTimeout(() => {
+    bits.remove();
+    if (cleanup) {
+      overlay.remove();
+    }
+  }, 220);
 }
 
 function createDom(opt) {
@@ -178,11 +265,45 @@ function injectStyles(opt) {
       transform-origin: 50% 100%;
       will-change: transform, opacity;
       opacity: 1;
+      pointer-events: auto;
+      touch-action: manipulation;
+      cursor: pointer;
+    }
+    .lantern-node::before{
+      content: "";
+      position: absolute;
+      inset: -22px;
     }
     .lantern-node img{
       width: 100%;
       height: auto;
       display: block;
+    }
+    .lantern-pop-bits{
+      position: fixed;
+      width: 0;
+      height: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .lantern-pop-bit{
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: #000;
+      border-radius: 999px;
+      transform: translate(-50%, -50%);
+      animation: lanternPopBit 200ms ease-out forwards;
+    }
+    @keyframes lanternPopBit{
+      from{
+        transform: translate(-50%, -50%) translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      to{
+        transform: translate(-50%, -50%) translate(var(--dx), var(--dy)) scale(0.4);
+        opacity: 0;
+      }
     }
 
     /* Micro flame flicker: glow breathes gently, lantern body steady */
