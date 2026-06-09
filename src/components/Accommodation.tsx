@@ -16,12 +16,15 @@ const accommodationByLocation = [
     location: "Bo Kaew",
     stays: [
       {
-        name: "Bo Kaeo Legend",
-        mapsUrl: "https://maps.app.goo.gl/GayMSSU1GeRwLC6j8?g_st=ic",
+        name: "ร้านอาหารพรสุดา / Pornsuda Restaurant",
+        phone: "081-960-7453",
+        mapsUrl: "https://maps.app.goo.gl/HyYQpjSg7AWBeBsg6?g_st=ic",
       },
       {
-        name: "Yellow Mango House (บ่านมะม่วงหลวง)",
-        mapsUrl: "https://maps.app.goo.gl/cLsvq94QZyF14Wqu8?g_st=ic",
+        name: "Karin Homestay",
+        contact: "ก้อย (Koi)",
+        phone: "08-5719-9607",
+        mapsUrl: "https://maps.app.goo.gl/xXjMKaxiMG7VdSuD6?g_st=ic",
       },
     ],
   },
@@ -47,6 +50,19 @@ export default function Accommodation() {
                 {group.stays.map((stay) => (
                   <li key={stay.name} className="text-stone-600">
                     <p className="text-base md:text-lg">{stay.name}</p>
+                    {"contact" in stay && stay.contact && (
+                      <p className="text-sm md:text-base text-stone-500">
+                        Contact: {stay.contact}
+                      </p>
+                    )}
+                    {"phone" in stay && stay.phone && (
+                      <a
+                        href={`tel:${stay.phone.replace(/[^0-9+]/g, "")}`}
+                        className="block text-sage-700 hover:text-sage-800 underline underline-offset-4 transition-colors"
+                      >
+                        {stay.phone}
+                      </a>
+                    )}
                     <a
                       href={stay.mapsUrl}
                       target="_blank"
