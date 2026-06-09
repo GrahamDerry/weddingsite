@@ -23,7 +23,7 @@ const accommodationByLocation = [
       {
         name: "Karin Homestay",
         contact: "ก้อย (Koi)",
-        phone: "08-5719-9607",
+        phone: "085-719-9607",
         mapsUrl: "https://maps.app.goo.gl/xXjMKaxiMG7VdSuD6?g_st=ic",
       },
     ],
