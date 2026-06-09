@@ -1,6 +1,7 @@
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Location from './components/Location'
+import Schedule from './components/Schedule'
 import RSVP from './components/RSVP'
 import Accommodation from './components/Accommodation'
 import Footer from './components/Footer'
@@ -12,6 +13,7 @@ function App() {
       <main>
         <Hero />
         <Location />
+        <Schedule />
         <RSVP />
         <Accommodation />
       </main>

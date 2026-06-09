@@ -4,6 +4,7 @@ import { config } from '../config'
 const navItems = [
   { label: 'Home', href: '#home' },
   { label: 'Location', href: '#location' },
+  { label: 'Schedule', href: '#schedule' },
   { label: 'RSVP', href: '#rsvp' },
   { label: 'Accommodation', href: '#accommodation' },
 ]
