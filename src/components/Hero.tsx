@@ -24,9 +24,18 @@ export default function Hero() {
         </div>
 
         {/* Main headline */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-light text-stone-800 mb-4 tracking-tight">
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-light text-stone-800 mb-6 tracking-tight">
           {config.coupleNames}
         </h1>
+
+        {/* Wedding date */}
+        <div className="flex items-center justify-center gap-4 mb-6">
+          <span className="h-px w-10 sm:w-14 bg-sage-300" aria-hidden="true" />
+          <p className="text-sm sm:text-base md:text-lg text-stone-700 tracking-[0.25em] uppercase font-light">
+            {config.weddingDate}
+          </p>
+          <span className="h-px w-10 sm:w-14 bg-sage-300" aria-hidden="true" />
+        </div>
 
         {/* Subheadline */}
         <p className="text-xl sm:text-2xl md:text-3xl font-serif font-light text-stone-600 mb-3 italic">

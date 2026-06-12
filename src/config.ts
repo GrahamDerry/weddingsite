@@ -7,6 +7,9 @@ export const config = {
   tagline: "Wedding celebration",
   location: "Chiang Mai, Thailand",
 
+  // Wedding date
+  weddingDate: "Saturday, July 25, 2026",
+
   // Venue details
   venueName: "Mint's house",
   address: "Bo Kaeo, Samoeng District, Chiang Mai 50250",
