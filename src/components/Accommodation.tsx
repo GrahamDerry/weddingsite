@@ -1,4 +1,16 @@
-const accommodationByLocation = [
+type Stay = {
+  name: string
+  mapsUrl: string
+  contact?: string
+  phone?: string
+}
+
+type LocationGroup = {
+  location: string
+  stays: Stay[]
+}
+
+const accommodationByLocation: LocationGroup[] = [
   {
     location: "Chiang Mai",
     stays: [
@@ -16,15 +28,9 @@ const accommodationByLocation = [
     location: "Bo Kaew",
     stays: [
       {
-        name: "ร้านอาหารพรสุดา / Pornsuda Restaurant",
-        phone: "081-960-7453",
-        mapsUrl: "https://maps.app.goo.gl/HyYQpjSg7AWBeBsg6?g_st=ic",
-      },
-      {
-        name: "Karin Homestay",
-        contact: "ก้อย (Koi)",
-        phone: "085-719-9607",
-        mapsUrl: "https://maps.app.goo.gl/xXjMKaxiMG7VdSuD6?g_st=ic",
+        name: "บ้านมะม่วงหลวง / The Grand Mango",
+        phone: "081-980-4751",
+        mapsUrl: "https://maps.app.goo.gl/cLsvq94QZyF14Wqu8?g_st=ic",
       },
     ],
   },
