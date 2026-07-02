@@ -15,7 +15,7 @@ const accommodationByLocation: LocationGroup[] = [
     location: "Chiang Mai",
     stays: [
       {
-        name: "Vdara Resort and Spa (Vdara Pool Resort Spa Chiang Mai)",
+        name: "Vdara Resort and Spa",
         mapsUrl: "https://maps.app.goo.gl/LRDrTCKXZiCkENNh7?g_st=ic",
       },
       {
